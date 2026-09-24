@@ -1,0 +1,18 @@
+const C=window.SITE_CONFIG;
+const $=(s)=>document.querySelectorAll(s);
+document.querySelectorAll("[data-business-name]").forEach(e=>e.textContent=C.businessName);
+document.querySelectorAll("[data-phone]").forEach(e=>e.textContent=C.phone);
+document.querySelectorAll("[data-email-text]").forEach(e=>e.textContent=C.email);
+document.querySelectorAll("[data-location]").forEach(e=>e.textContent=C.location);
+document.querySelectorAll("[data-experience]").forEach(e=>e.textContent=C.experience);
+document.querySelectorAll("[data-call]").forEach(e=>e.href="tel:+91"+C.phone);
+document.querySelectorAll("[data-email]").forEach(e=>e.href="mailto:"+C.email);
+document.querySelectorAll("[data-whatsapp]").forEach(e=>e.href="https://wa.me/91"+C.phone+"?text="+encodeURIComponent(C.whatsappMessage));
+const grid=document.getElementById("service-grid");
+C.services.forEach((s,i)=>{const a=document.createElement("article");a.className="card";a.innerHTML=`<b>0${i+1}</b><h3>${s.title}</h3><p>${s.text}</p>`;grid.appendChild(a)});
+document.getElementById("year").textContent=new Date().getFullYear();
+const menu=document.querySelector(".menu"),nav=document.getElementById("nav");
+menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",open)});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+const form=document.getElementById("lead-form"),status=document.getElementById("form-status");
+form.addEventListener("submit",(e)=>{if(form.action.includes("REPLACE_WITH_YOUR_FORM_ID")){e.preventDefault();status.textContent="Online form is not connected yet. Please use WhatsApp or call; the form will be activated after the free form-service setup.";status.style.color="#9b5d00";}});
