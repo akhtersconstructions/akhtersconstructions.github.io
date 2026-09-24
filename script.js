@@ -15,4 +15,4 @@ const menu=document.querySelector(".menu"),nav=document.getElementById("nav");
 menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",open)});
 nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
 const form=document.getElementById("lead-form"),status=document.getElementById("form-status");
-form.addEventListener("submit",(e)=>{if(form.action.includes("REPLACE_WITH_YOUR_FORM_ID")){e.preventDefault();status.textContent="Online form is not connected yet. Please use WhatsApp or call; the form will be activated after the free form-service setup.";status.style.color="#9b5d00";}});
+form.addEventListener("submit",()=>{const button=form.querySelector('button[type="submit"]');if(button){button.disabled=true;button.textContent="Sending…";}});
